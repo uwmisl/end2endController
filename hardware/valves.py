@@ -23,22 +23,25 @@ class Valves(object):
 
   def _lookup(self,x):
     if isinstance(x,int):
-      return self.relays[x]
+      return [self.relays[x]]
     else:
-      return self.relays[self.LUT[x]]
+      return [self.relays[q] for q in self.LUT[x]]
 
   def open(self,n):
-    self._lookup(n).setState(True)
+    for v in self._lookup(n):
+      v.setState(True)
 
   def close(self,n):
-    self._lookup(n).setState(False)
+    for v in self._lookup(n):
+      v.setState(True)
 
 
 if __name__ == '__main__':
   from time import sleep
-  v = Valves()
-  v.open(0)
+  mylut = {"test": [0,11]}
+  v = Valves(LUT=mylut)
+  v.open("test")
   sleep(1)
-  v.close(0)
+  v.close("test")
 
 
