@@ -12,9 +12,9 @@ selectorValve = 11 #on for dry side
 fluids = {"wash":[0], "A":[1], "C":[2], "T":[3], "G":[4], "act":[5],
           "wetwash":[6], "ox":[7], "deblock":[8], "cleave":[9]}
 #id27_bichlien 5'-3'
-sequence = "TTAATCGGTAACACCTGCGGAGCTAGCTAGCTGCTATCTGTGTGACAGCTATCATGTGTCACGCACGTCTAGACGTCTCTCTCGCTGTAGTCACTACGCTATAGCACTATACAGATCTCGTGCTCATGCTTGGCACCGATTCGTAACAAT"
+sequence = "TTAATCGGTAACACCTGCGGAGCTAGCTAGCTGCTATCTGTGTGACAGCTATCATGTGTCACGCACGTCTAGACGTCTCTCTCGCTGTAGTCACTACGCTATAGCACTATACAGATCTCGTGCTCATGCTACCTCGGGAACCAACTGACTCAGGCTAATGCGTGAAGCTGTACTAGGTCATGGCACCGATTCGTAACAAT"
 
-s = Dispenser(fluidMap = fluids, verbose=True, debug=True)
+s = Dispenser(fluidMap = fluids, verbose=True, debug=False)
 
 #init
 s.pump(1000,"wash")
@@ -23,9 +23,9 @@ s.pump(1000,"wash")
 s.valves.close(11)
 #deblock
 for nt in sequence[::-1]:  #note reversing sequence to synthesize 3'-5'
-  s.pump(500,"deblock")
+  s.pump(450,"deblock")
   sleep(25)
-  s.pump(500,"deblock")
+  s.pump(450,"deblock")
   sleep(25)
 
   #couple
@@ -40,7 +40,7 @@ for nt in sequence[::-1]:  #note reversing sequence to synthesize 3'-5'
   s.pump(1000,"wash")
   s.valves.close(11) #wetside
   #ox
-  s.pump(1000,"ox")
+  s.pump(750,"ox")
   s.pump(2000,"wash")
 
 

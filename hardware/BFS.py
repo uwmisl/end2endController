@@ -47,4 +47,7 @@ class BFS(object):
     """
       returns: flow rate in ml/min
     """
-    return 1000.0*self.get_mass_flow_rate()/self.get_density()
+    density = self.get_density()
+    if density < 100: #not a liquid
+      return 0.0
+    return 1000.0*self.get_mass_flow_rate()/density
