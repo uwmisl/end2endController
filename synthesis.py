@@ -66,6 +66,8 @@ class Dispenser(object):
       time_interval(float): number of seconds to pump each fluid
                           before moving to the next.
     """
+    if self.verbose:
+      print("mixing {} + {} ...".format(*fluids),end=" ")
     flow_ulps_n0 = self.flow_sens.get_flow_rate()*1000.0/60.0
     t_n0 = time()
     t_change = time()
@@ -88,3 +90,5 @@ class Dispenser(object):
         t_change = time()
 
     self.valves.close(fluids[fluid_index])
+    if self.verbose:
+      print("done")

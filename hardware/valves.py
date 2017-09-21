@@ -33,7 +33,7 @@ class Valves(object):
 
   def close(self,n):
     for v in self._lookup(n):
-      v.setState(True)
+      v.setState(False)
 
 
 if __name__ == '__main__':
@@ -43,5 +43,8 @@ if __name__ == '__main__':
   v.open("test")
   sleep(1)
   v.close("test")
+  print ("done")
+
+  sleep(4)
 
 
