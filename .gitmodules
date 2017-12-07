@@ -1,0 +1,4 @@
+[submodule "hamiltonPSD"]
+	path = hamiltonPSD
+	url = git@gitlab.cs.washington.edu:misl-End2End/hamiltonPSD.git
+	branch = master
