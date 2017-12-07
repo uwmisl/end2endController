@@ -17,7 +17,7 @@ sequence = "TTAATCGGTAACACCTGCGGAGCTAGCTAGCTGCTATCTGTGTGACAGCTATCATGTGTCACGCACGT
 s = Dispenser(fluidMap = fluids, verbose=True, debug=False)
 
 #init
-s.pump(1000,"wash")
+s.pump(1000,"wetwash")
 
 #start on wet side
 s.valves.close(11)
@@ -41,7 +41,7 @@ for nt in sequence[::-1]:  #note reversing sequence to synthesize 3'-5'
   s.valves.close(11) #wetside
   #ox
   s.pump(750,"ox")
-  s.pump(2000,"wash")
+  s.pump(2000,"wetwash")
 
 
 while True:
