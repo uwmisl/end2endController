@@ -27,7 +27,7 @@ class Dispenser(object):
       self.flow_sens = dummy_BFS()
     else:
       self.flow_sens = BFS()
-    self.valves = Valves(LUT=fluidMap)
+    self.valves = Valves(LUT=fluidMap,hold_duty=([0.3]*12+[1.0]*4))
     self.verbose = verbose
     self.debug = debug
 
