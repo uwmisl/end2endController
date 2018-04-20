@@ -9,7 +9,7 @@ class PhidgetRelay(object):
   def __init__(self,vintport,channel,hold_duty=1.0,hit_delay=0.2):
     self.rly = DigitalOutput()
     self.rly.setHubPort(vintport)
-    self.rly.setChannel(ch)
+    self.rly.setChannel(channel)
     self.rly.openWaitForAttachment(5000)
     self.lock = Lock()
     self.state = False #false -> closed, true->open, or duty>0%
@@ -64,11 +64,11 @@ class Valves(object):
 
   def open(self,n):
     for v in self._lookup(n):
-      v.setState(True)
+      v.open()
 
   def close(self,n):
     for v in self._lookup(n):
-      v.setState(False)
+      v.close()
 
 
 if __name__ == '__main__':
