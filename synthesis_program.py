@@ -6,7 +6,7 @@ from synthesis import Dispenser
 
 
 
-selectorValve = 11 #on for dry side
+selectorValve = 15 #on for dry side
 #fluids = {"wash":[0,selectorValve], "act":[1,selectorValve],
 #          "A":[2,selectorValve], "T":[3,selectorValve],
 #          "C":[4,selectorValve], "G":[5,selectorValve],
@@ -16,6 +16,9 @@ fluids = {"wash":[0], "A":[2], "C":[3], "T":[4], "G":[5], "X":[6], "act":[1],
           "wetwash":[7], "ox":[8], "deblock":[9], "cleave":[10]}
 
 sequence = "XTTCCGCAAGACTTATTGGCATAGTCACAGATGCAGCACGTATAGTATATATGTGTACTGTCGCATAGCAGCTAGCTAGCTTCCATTTAACGCAAGCAGGA"
+#hairpin seq
+sequence = "agcgTGATAACCGTGCCATGATGCACTTGGACAACTAGCAACAGtttttCTGTTGCTAGTTGTCCAAGTGCATCATGGCACGGTTATCA".upper()
+
 
 s = Dispenser(fluidMap = fluids, verbose=True, debug=False)
 
@@ -43,7 +46,6 @@ for nt in sequence[::-1]:  #note reversing sequence to synthesize 3'-5'
   s.pump(100,"act")
   #s.pump(350,nt) #mix in manifold, must mix in fluids defn
   s.mix(350,[nt,"act"])
-  print("adding "+nt)
   if nt.upper() == "X":
     print("coupling X")
     for _ in range(15):

@@ -89,6 +89,7 @@ class Dispenser(object):
         self.valves.open(fluids[fluid_index])
         t_change = time()
 
-    self.valves.close(fluids[fluid_index])
+    for fl in fluids:
+      self.valves.close(fl)
     if self.verbose:
       print("done")

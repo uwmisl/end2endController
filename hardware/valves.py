@@ -15,6 +15,7 @@ class PhidgetRelay(object):
     self.state = False #false -> closed, true->open, or duty>0%
     self.hit_delay = hit_delay
     self.hold_duty = hold_duty
+    self.t = Timer(0,None)
 
   def open(self):
     def _hold():
@@ -28,11 +29,12 @@ class PhidgetRelay(object):
       self.state = True
 
     # set hold_duty after hit_delay seconds
-    t = Timer(self.hit_delay,_hold)
-    t.start()
+    self.t = Timer(self.hit_delay,_hold)
+    self.t.start()
 
   def close(self):
     with self.lock:
+      self.t.cancel()
       self.rly.setDutyCycle(0.0)
       self.rly.state = False
 
