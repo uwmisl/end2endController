@@ -1,0 +1,3 @@
+[submodule "hamiltonPSD"]
+	path = hamiltonPSD
+	url = https://github.com/uwmisl/hamiltonPSD.git
